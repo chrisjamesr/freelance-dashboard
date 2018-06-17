@@ -1,3 +1,19 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+   root 'sessions#create'
+  # get '/auth/:provider/callback', to: 'sessions#create'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
+
+  resources :users, :only => [:create, :index, :show, :update]
+
+  resources :clients , :only => [:create, :show, :update]
+
+  resources :projects, :only => [:index, :show, :create, :update, :destroy] do
+    resources :tasks, :only => [:index, :show, :create, :update]
+  end
+
+  resources :tasks, :only => [:index, :show, :create, :update, :destroy] do
+    resources :notes, :only => [:create, :update, :destroy]
+  end
 end
