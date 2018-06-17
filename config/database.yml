@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: freelance-dashboard_production
   username: freelance-dashboard
   password: <%= ENV['FREELANCE-DASHBOARD_DATABASE_PASSWORD'] %>
