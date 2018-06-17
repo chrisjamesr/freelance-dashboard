@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 .DS_store
+.env
+.ruby-version
+Gemfile.lock
 # Ignore uploaded files in development
 /storage/*
 
