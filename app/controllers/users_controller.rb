@@ -7,8 +7,14 @@ class UsersController < ApplicationController
         
         render json: user
       else
-        render json: user.errors
+        # render something else
+        # render json: user.errors
     end
+  end
+
+  def show
+    user = User.find(params[:id])
+    render json: user 
   end
 
   def index
@@ -16,16 +22,10 @@ class UsersController < ApplicationController
     render json: users
   end
 
-  def show
-    user = User.find(params[:id])
-    render json: user  
-  end
-
   def update
     user = User.find(params[:id])
-    if user.update(user_params)
-      render json: user
-    end
+    user.update(user_params)
+    render json: user
   end
 
   private
