@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     binding.pry
     user = User.new(user_params)
       if user.save 
-        set_session
+        
         render json: user
       else
         render json: user.errors
