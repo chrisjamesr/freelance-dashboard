@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
 
   def create
-
-
+    task = Task.new(task_params)
+    render json: task
   end
 
   def index
-    task = Task.where(user_id: current_user.id, project_id: params[:project_id])
+    task = Task.where(user_id: params[:user_id], project_id: params[:project_id])
     render json: task
   end
 

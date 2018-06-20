@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
+  
   namespace :api do
-    resources :users, :except => [:new, :edit, :destroy] do
-      # resources :clients , :except => [:new, :edit, :destroy]
+    post 'user_token' => 'user_token#create'
       resources :projects, :except => [:new, :edit]
       resources :tasks, :except => [:new, :edit]
       resources :notes, :except => [:new, :edit]
