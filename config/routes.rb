@@ -1,19 +1,12 @@
 Rails.application.routes.draw do
-   root 'sessions#create'
-  # get '/auth/:provider/callback', to: 'sessions#create'
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'
-
-  resources :users, :only => [:create, :show,:index, :update]
-
-  resources :clients , :only => [:create, :show, :update]
-
-  resources :projects, :only => [:index, :show, :create, :update, :destroy] do
-    resources :tasks, :only => [:index, :show, :create, :update]
+  
+  namespace :api do
+    resources :users, :except => [:new, :edit, :destroy] do
+      resources :clients , :except => [:new, :edit, :destroy]
+      resources :projects, :except => [:new, :edit]
+      resources :tasks, :except => [:new, :edit]
+      resources :notes, :except => [:new, :edit]
+    end
   end
 
-  resources :tasks, :only => [:index, :show, :create, :update, :destroy] do
-    resources :notes, :only => [:create, :update, :destroy]
-  end
-end
+  # api/users/:id/projects/:id
